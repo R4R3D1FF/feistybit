@@ -50,21 +50,21 @@ router.post('/logout', () => {
 router.post('/register', express.json(), registerController);
 
 
-router.get('', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index1.html'));
-});
+// router.get('', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'index1.html'));
+// });
 
-router.get('/script.js', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'script.js'));
-});
+// router.get('/script.js', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'script.js'));
+// });
 
-router.get('/style.css', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'style.css'));
-});
+// router.get('/style.css', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'style.css'));
+// });
 
-router.get('/Reddit-Logo.png', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'Reddit-Logo.png'));
-});
+// router.get('/Reddit-Logo.png', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'Reddit-Logo.png'));
+// });
 
 router.post('/submit/', express.json(), submitController);
 
