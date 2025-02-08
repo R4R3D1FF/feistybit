@@ -1,6 +1,4 @@
-// function postgresQuery(s){
-    
-// }
+
 
 import pg from 'pg';
 
@@ -12,11 +10,14 @@ const { Client } = pg;
 async function connectAndQuery(s) {
   let result;
   const client = new Client({
-    user: 'postgres',       // Replace with your PostgreSQL username
-    host: 'localhost',           // Replace with your host, e.g., localhost or a remote server
-    database: 'postgres',   // Replace with your database name
-    password: 'r4r3krab',   // Replace with your password
-    port: 5432,                  // Default PostgreSQL port
+    user: process.env.PGUSER,       // Replace with your PostgreSQL username
+    host: process.env.PGHOST,           // Replace with your host, e.g., localhost or a remote server
+    database: process.env.PGDATABASE,   // Replace with your database name
+    password: process.env.PGPASSWORD,   // Replace with your password
+    port: 5432, // Default PostgreSQL port
+    ssl: {
+      rejectUnauthorized: false,
+    },
   });
   try {
     // Connect to the database

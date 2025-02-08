@@ -117,7 +117,9 @@ router.get('/r/:subreddit/top/', async (req, res) => {
         const subredditId = subreddit.rows[0].subredditid;
         
         
-        const count = req.query.count;
+        let count = req.query.count;
+        if (count === undefined)
+            count = 0;
         console.log(count);
         const result = await connectAndQuery(`SELECT * FROM posts where subredditid = ${subredditId} ORDER BY (upvotes - downvotes) DESC LIMIT 25 OFFSET ${count};`);
         
