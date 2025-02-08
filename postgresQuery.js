@@ -27,7 +27,7 @@ async function connectAndQuery(s) {
     // Example query
     console.log(s);
     result = await client.query(s); // Replace with your table name
-    // console.log('Query Results:', result);
+    console.log('Query Results:', result);
 
   } catch (err) {
     console.error('Error querying the database:', err);
