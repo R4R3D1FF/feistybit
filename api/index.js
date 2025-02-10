@@ -18,12 +18,12 @@ const allowedOrigins = ["https://feistybitfrontend2.vercel.app",
 app.use(cors({
     origin: (origin, callback) => {
         if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
+          callback(null, origin);
         } else {
           callback(new Error("Not allowed by CORS"));
         }
       },
-    secure: true,
+    
     credentials: true,
 }));
 
