@@ -11,8 +11,18 @@ const PORT = 8000;
 const app = express();
 
 app.use(cookieParser());
+
+const allowedOrigins = ["https://feistybitfrontend2.vercel.com", 
+    "http://127.0.0.1:5173"
+];
 app.use(cors({
-    origin: "http://127.0.0.1:5173", 
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error("Not allowed by CORS"));
+        }
+      },
     secure: true,
     credentials: true,
 }));
