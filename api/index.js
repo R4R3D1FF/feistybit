@@ -12,7 +12,7 @@ const app = express();
 
 app.use(cookieParser());
 
-const allowedOrigins = ["https://feistybitfrontend2.vercel.com", 
+const allowedOrigins = ["https://feistybitfrontend2.vercel.app", 
     "http://127.0.0.1:5173"
 ];
 app.use(cors({
