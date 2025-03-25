@@ -22,8 +22,8 @@ async function undownvotePost(postid){
 
 
 async function votePutController(req, res){
-    console.log("INSIDE POST");
-    console.log(req.body);
+    // console.log("INSIDE POST");
+    // console.log(req.body);
     // Extract data from the request body
     const { postid, vote } = req.body;
 
@@ -37,8 +37,8 @@ async function votePutController(req, res){
 }
 
 async function voteDeleteController(req, res){
-    console.log("INSIDE POST");
-    console.log(req.body);
+    // console.log("INSIDE POST");
+    // console.log(req.body);
     // Extract data from the request body
     const { postid, vote } = req.body;
 

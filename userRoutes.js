@@ -4,13 +4,13 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { MongoClient } from 'mongodb';
 
-import loginController from './controllers/loginController.js';
+import {googleLoginController, loginController} from './controllers/loginController.js';
 import registerController from './controllers/registerController.js';
 import submitController from './controllers/submitController.js';
 import profileController from './controllers/profileController.js';
 import postController from './controllers/postController.js';
 import {votePutController, voteDeleteController} from './controllers/voteController.js';
-
+import currController from './controllers/currentUserController.js';
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -40,8 +40,15 @@ router.get('/random/', express.json(), async (req, res) => {
 });
 
 router.post('/login', express.json(), loginController);
-router.post('/logout', () => {
-    res.clearCookie("jwt");
+router.post('/google-login', express.json(), googleLoginController);
+
+router.post('/logout', (req, res) => {
+    console.log("LOGOUT REQUEST");
+    res.clearCookie("jwt", {
+        httpOnly: true,
+        sameSite: "None",
+        secure: true
+    });
     res.json({
         message: "Logged out successfully",
     });
@@ -200,5 +207,9 @@ router.put("/vote/:userid/:postid/", async (req, res) => {
     `);
     res.json(result.rows);
 });
+
+router.get("/currUser/", currController);
+
+
 
 export default router;

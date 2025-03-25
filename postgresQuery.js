@@ -22,19 +22,19 @@ async function connectAndQuery(s) {
   try {
     // Connect to the database
     await client.connect();
-    console.log('Connected to PostgreSQL!');
+    // console.log('Connected to PostgreSQL!');
 
     // Example query
-    console.log(s);
+    // console.log(s);
     result = await client.query(s); // Replace with your table name
-    console.log('Query Results:', result);
+    // console.log('Query Results:', result);
 
   } catch (err) {
     console.error('Error querying the database:', err);
   } finally {
     // Close the database connection
     await client.end();
-    console.log('Disconnected from PostgreSQL.');
+    // console.log('Disconnected from PostgreSQL.');
     if (result){
       // console.log('Query Results:', result.rows);
       return result;

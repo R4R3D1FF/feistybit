@@ -18,7 +18,8 @@ async function registerController(req, res){
 
     try {
         // Insert user into database
-        const result = await connectAndQuery(`INSERT INTO USERS (userid, username, password) VALUES (${id}, '${username}', '${hashedPassword}');`);
+        const currentTimestamp = new Date().toISOString();
+        const result = await connectAndQuery(`INSERT INTO USERS (userid, username, password, Date) VALUES (${id}, '${username}', '${hashedPassword}', '${currentTimestamp}');`);
         
         // Check if the insert was successful
         if (!result) {
@@ -31,7 +32,8 @@ async function registerController(req, res){
         // Set JWT cookie
         res.cookie('jwt', token, {
             httpOnly: true,
-            sameSite: 'strict', // Prevent CSRF attacks
+            sameSite: 'none', // Prevent CSRF attacks
+            secure: true,
             maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
         });
 

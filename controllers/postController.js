@@ -17,7 +17,7 @@ async function postController(req, res){
         post.children = (await connectAndQuery(`SELECT * from comments where postid = ${req.params[1]} AND parentid IS NULL;`)).rows;
         for (const child of post.children)
             await appendChildren(child);
-        console.log(post);
+        // console.log(post);
         res.status(200).json(post);
         
 

@@ -13,11 +13,11 @@ const app = express();
 app.use(cookieParser());
 
 const allowedOrigins = ["https://feistybitfrontend2.vercel.app", 
-    "http://127.0.0.1:5173"
+    /^http:\/\/127\.0\.0\.1:\d+$/
 ];
 app.use(cors({
     origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
+        if (!origin || allowedOrigins.some(o => (typeof o === "string" ? o === origin : o.test(origin)))) {
           callback(null, origin);
         } else {
           callback(new Error("Not allowed by CORS"));
